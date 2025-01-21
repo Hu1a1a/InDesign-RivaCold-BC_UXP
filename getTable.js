@@ -10,19 +10,18 @@ async function extractTablesToJSON() {
                 const textFrame = page.textFrames.item(+textFrame_index)
                 for (const table_index in textFrame.tables.everyItem().name) {
                     const table = textFrame.tables.item(+table_index)
-                    if (table.contents.includes('€uros')) {
+                    if (table.contents && table.contents.includes('€uros')) {
                         for (const column_index in table.columns.everyItem().name) {
                             const column = table.columns.item(+column_index)
-                            if (column.contents.includes('€uros')) {
+                            if (column.contents && column.contents.includes('€uros')) {
                                 for (const cell_index in column.cells.everyItem().name) {
                                     const cell = column.cells.item(+cell_index)
                                     const value = cell.contents.split(",")[0].replace(".", "")
                                     if (+value) {
                                         const value2 =
-                                            Math.round(+value * 1.3 + 1).toLocaleString("de-DE", { minimumFractionDigits: 2 })
-                                        console.log(value2)
+                                            Math.ceil(+value * 1.03 + 1).toLocaleString("de-DE", { minimumFractionDigits: 2 })
                                         cell.contents = value2
-                                        cell.fillColor = activeDocument.swatches.itemByName("PANTONE 7707 C")
+                                        //cell.fillColor = activeDocument.swatches.itemByName("PANTONE 7707 C")
                                     }
                                 }
                             }
