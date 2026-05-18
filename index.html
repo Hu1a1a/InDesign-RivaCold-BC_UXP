@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>UXP</title>
-		<!--<script src="catalogo6.js"></script>-->
-		<script src="getTable.js"></script>
-	</head>
-	<body>
-		<div class="wrapper">
-			<sp-action-button id="catalogo6">Crear Catalogo 6</sp-action-button>
-		</div>
-	</body>
+  <head>
+    <title>UXP</title>
+    <!--<script src="catalogo6.js"></script>-->
+    <script src="getTable.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <sp-action-button id="catalogo6">Crear Catalogo 6</sp-action-button>
+    </div>
+
+    <dialog id="doneDialog" style="padding: 16px; min-width: 320px">
+      <h3 style="margin: 0 0 8px 0">Done</h3>
+      <p id="doneMsg" style="margin: 0 0 12px 0">Proceso terminado correctamente.</p>
+      <div style="display: flex; justify-content: flex-end">
+        <sp-action-button id="doneOk">OK</sp-action-button>
+      </div>
+    </dialog>
+  </body>
 </html>

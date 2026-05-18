@@ -19,7 +19,7 @@ async function extractTablesToJSON() {
                                     const value = cell.contents.split(",")[0].replace(".", "")
                                     if (+value) {
                                         const value2 =
-                                            Math.ceil(+value * 1.03 + 1).toLocaleString("de-DE", { minimumFractionDigits: 2 })
+                                            (Math.trunc(+value * 1.01)).toLocaleString("de-DE", { minimumFractionDigits: 2 })
                                         cell.contents = value2
                                         //cell.fillColor = activeDocument.swatches.itemByName("PANTONE 7707 C")
                                     }
@@ -30,8 +30,18 @@ async function extractTablesToJSON() {
                 }
             }
         }
-        console.log("done")
+        showDoneDialog("Done ✅");
+
+
     } catch (error) { console.log(error) }
+}
+
+function showDoneDialog(message = "Proceso terminado correctamente.") {
+    const dlg = document.getElementById("doneDialog");
+    if (!dlg) return;
+    const p = dlg.querySelector("p");
+    if (p) p.textContent = message;
+    dlg.showModal();
 }
 
 document.getElementById("catalogo6").onclick = extractTablesToJSON;
